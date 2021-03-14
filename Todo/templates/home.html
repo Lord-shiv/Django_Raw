@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+<div class="container">
+    <h1 class="mx-auto" style="width: 500px;"> Welcome To The Todo App</h1>
+
+    <div class="form-group">
+        <form action="/add-todo/" method="post">
+            {% csrf_token %}
+            <label for="todo">Author</label>
+            <input type="text" class="form-control" name="author">
+            <label for="todo">Content</label>
+            <input type="text" class="form-control" name="content">
+            <label for="todo">Phone no.</label>
+            <input type="text" name="phone" class="form-control">
+            <label for="todo">email</label>
+            <input type="text" name="email" class="form-control">
+            <p></p>
+            <input type="submit" name="taskAdd" value="Add to the table" class="btn btn-success" />
+            <hr>
+        </form>
+    </div>
+    <table class=" table">
+        <thead>
+            <tr>
+                <th scope="col">Sr. no.</th>
+                <th scope="col">First Name</th>
+                <th scope="col">Last Name</th>
+                <th scope="col">Content</th>
+                <th scope="col">email</th>
+                <th scope="col">Phone no.</th>
+                <th scope="col">Delete</th>
+            </tr>
+        </thead>
+        {% for todo_item in all_items %}
+        <tbody>
+            <tr>
+                <th scope="row">{{ todo_item.Sr_no }}</th>
+                <td>{{ todo_item.f_name }}</td>
+                <td>{{ todo_item.l_name }}</td>
+                <td>{{ todo_item.content }}</td>
+                <td>{{ todo_item.email }}</td>
+                <td>{{ todo_item.phone }}</td>
+                <th>
+                    <form action="/delete-todo/{{ todo_item.Sr_no}}/" method="post">
+                        {% csrf_token %}<input type="submit" value="delete" class="btn btn-danger" />
+                    </form>
+                </th>
+            </tr>
+        </tbody>
+        {% endfor %}
+    </table>
+
+</div>
+{% endblock content %}
