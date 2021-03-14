@@ -1,6 +1,7 @@
 {% extends "todo/base.html" %}
 
 {% block content %}
+
 <table class=" table">
     <thead>
         <tr>
@@ -10,7 +11,7 @@
             <th scope="col">email</th>
             <th scope="col">Phone no.</th>
             <th scope="col">Category</th>
-            <th scope="col">Operations</th>
+            <th scope="col"><a href="{% url 'todo_form' %}" class="btn btn-success">Add New</a></th>
         </tr>
     </thead>
     {% for todo_item in todo_list %}
@@ -23,7 +24,13 @@
             <td>{{ todo_item.mobile }}</td>
             <td>{{ todo_item.category }}</td>
             <td>
-                <a href="{% url 'todo_update' todo_item.id %}" class="btn btn-success">update</a>
+                <a href="{% url 'todo_update' todo_item.id %}" class="btn btn-outline-success">update</a>
+                <p></p>
+                <form action="{% url 'todo_delete' todo_item.id %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-outline-danger">delete
+                    </button>
+                </form>
             </td>
         </tr>
     </tbody>

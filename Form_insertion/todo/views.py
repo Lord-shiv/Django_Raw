@@ -29,5 +29,7 @@ def todo_form(request, id=0):
         return redirect('/todo/list')
 
 
-def todo_delete(request):
-    return
+def todo_delete(request, id):
+    todo = Todo.objects.get(pk=id)
+    todo.delete()
+    return redirect('/todo/list')
