@@ -1,5 +1,37 @@
 {% extends "todo/base.html" %}
 
 {% block content %}
-<p>list of all the todos</p>
+<table class=" table">
+    <thead>
+        <tr>
+            <th scope="col">No.</th>
+            <th scope="col">User</th>
+            <th scope="col">Content</th>
+            <th scope="col">email</th>
+            <th scope="col">Phone no.</th>
+            <th scope="col">Category</th>
+            <th scope="col">Operations</th>
+        </tr>
+    </thead>
+    {% for todo_item in todo_list %}
+    <tbody>
+        <tr>
+            <th scope="row">{{ todo_item.id }}</th>
+            <td>{{ todo_item.user }}</td>
+            <td>{{ todo_item.content }}</td>
+            <td>{{ todo_item.email }}</td>
+            <td>{{ todo_item.mobile }}</td>
+            <td>{{ todo_item.category }}</td>
+            <td>
+                <a href="{% url 'todo_update' todo_item.id %}" class="btn text-success px-0"></a>
+            </td>
+            <td>
+                <form action="/delete-todo/{{ todo_item.Sr_no}}/" method="post">
+                    {% csrf_token %}<input type="submit" value="delete" class="btn btn-danger" />
+                </form>
+            </td>
+        </tr>
+    </tbody>
+    {% endfor %}
+</table>
 {% endblock content%}
