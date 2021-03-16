@@ -10,17 +10,18 @@ from .forms import TodoForm
 def todo_home(request):
     all_items = TodoItem.objects.all()
     if request.method == "POST":
-        form = TodoForm(request.POST)
+        form = TodoForm(request.POST or None)
         if form.is_valid():
             form.save()
+            messages.success(request, ("Added successfully"))
             return redirect("todo-home")
     form = TodoForm()
-    context = {"form": form, "all_items": all_items, "title": "TODO LIST"}
+    context = {"form": form, "all_items": all_items}
     return render(request, "home.html", context)
 
 
 def delete_todo(request, todo_id):
     d_item = TodoItem.objects.get(id=todo_id)
     d_item.delete()
-    messages.info(request, "item removed !!!")
+    messages.info(request, "removed Successfully!")
     return redirect("todo-home")

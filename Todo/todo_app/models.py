@@ -16,7 +16,7 @@ class Category(models.Model):  # The Category table name that inherits models.Mo
 
 
 class TodoItem(models.Model):
-    author = models.CharField(max_length=50)
+    author = models.CharField(max_length=50, default="User", blank=True)
     content = models.CharField(max_length=200)
     completed = models.BooleanField(default=False)
     created = models.DateTimeField(auto_now_add=True, blank=True, null=True)
