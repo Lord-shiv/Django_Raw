@@ -25,3 +25,17 @@ def delete_todo(request, todo_id):
     d_item.delete()
     messages.info(request, "removed Successfully!")
     return redirect("todo-home")
+
+
+def mark_complete(request, todo_id):
+    todo = TodoItem.objects.get(id=todo_id)
+    todo.completed = True
+    todo.save()
+    return redirect("todo-home")
+
+
+def mark_incomplete(request, todo_id):
+    todo = TodoItem.objects.get(id=todo_id)
+    todo.completed = False
+    todo.save()
+    return redirect("todo-home")

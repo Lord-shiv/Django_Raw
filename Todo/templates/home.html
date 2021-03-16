@@ -55,25 +55,31 @@
                 <th class="text-muted" scope="row">{{ todo_item.id }}</th>
                 <td class="text-muted">{{ todo_item.author }}</td>
                 <td class="text-muted text-decoration-line-through">{{ todo_item.content }}</td>
-                <td class="text-muted">{{ todo_item.created }}</td>
+                <td class="text-muted text-decoration-line-through">{{ todo_item.created }}</td>
                 {% endif %}
 
                 <td>
                     {% if todo_item.completed == True %}
-                    <div class="form-check form-switch">
-                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckCheckeddisabled" checked
-                            disabled>yes
-                    </div>
+                    <a style="text-decoration:none; color: royalblue;" href="{% url 'mark_incomplete' todo_item.id %}">
+                        <div class="form-check form-switch">
+
+                            <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked
+                                disabled>
+                            finished
+                        </div>
+                    </a>
                     {% else %}
-                    <div class="form-check form-switch">
-                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefaultdisabled" disabled> no
-                    </div>
+                    <a style="text-decoration:none;color: royalblue;" href="{% url 'mark_complete' todo_item.id %}">
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" disabled>still
+                            working
+                        </div>
+                    </a>
                     {% endif %}
                 </td>
                 <td>
-                    <button class="btn btn-outline-success me-md-2 mb-1" type="button">update</button>
-                    <a href="{% url 'delete' todo_item.id %}" class=" btn btn-outline-danger mt-1"
-                        type="button">remove</a>
+                    <a href="{% url 'delete' todo_item.id %}" class=" btn btn-outline-danger" type="button">remove
+                    </a>
                 </td>
             </tr>
             {% endfor %}
