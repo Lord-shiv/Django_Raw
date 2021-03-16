@@ -1,34 +1,26 @@
-from django.shortcuts import render
-from django.http import HttpResponseRedirect
+from django.shortcuts import render, redirect
+from django.contrib import messages
+
 from .models import TodoItem
+from .forms import TodoForm
+
 # Create your views here.
 
 
 def todo_home(request):
     all_items = TodoItem.objects.all()
-    if request.method == 'POST':
-        if "taskAdd" in request.POST:
-            author = request.POST["author"]
-            content = request.POST['content']
-            date = str(request.POST["date"])
-            email = request.POST['email']
-            phone = request.POST['phone']
-            Todo = TodoItem(author=author, content=content,
-                            phone=phone, email=email)
-    return render(request, 'home.html',
-                  {'all_items': all_items})
-
-
-def add_todo(request):
-    # c = request.POST['content']
-    # new_item = TodoItem(content = c)
-    new_item = TodoItem(
-        content=request.POST['content'])
-    new_item.save()
-    return HttpResponseRedirect('/todo-home/')
+    if request.method == "POST":
+        form = TodoForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect("todo-home")
+    form = TodoForm()
+    context = {"form": form, "all_items": all_items, "title": "TODO LIST"}
+    return render(request, "home.html", context)
 
 
 def delete_todo(request, todo_id):
-    item_to_delete = TodoItem.objects.get(Sr_no=todo_id)
-    item_to_delete.delete()
-    return HttpResponseRedirect('/todo-home/')
+    d_item = TodoItem.objects.get(id=todo_id)
+    d_item.delete()
+    messages.info(request, "item removed !!!")
+    return redirect("todo-home")

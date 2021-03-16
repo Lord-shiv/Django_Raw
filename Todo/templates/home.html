@@ -1,57 +1,54 @@
 {% extends 'base.html' %}
 {% load static %}
-
+{% load crispy_forms_tags %}
 
 {% block content %}
 <div class="container">
-    <h1 class="mx-auto" style="width: 500px;"> Welcome To The Todo App</h1>
+    <h1 class="mx-auto mt-5" style="width: 500px;"> Welcome To The Todo App</h1>
 
     <div class="form-group">
-        <form action="/add-todo/" method="post">
-            {% csrf_token %}
-            <label for="todo">Author</label>
-            <input type="text" class="form-control" name="author">
-            <label for="todo">Content</label>
-            <input type="text" class="form-control" name="content">
-            <label for="todo">Phone no.</label>
-            <input type="text" name="phone" class="form-control">
-            <label for="todo">email</label>
-            <input type="text" name="email" class="form-control">
+        <div class="container">
+            <h6>Create Todo</h6>
             <p></p>
-            <input type="submit" name="taskAdd" value="Add to the table" class="btn btn-success" />
-            <hr>
-        </form>
+            <form action="" method="post" autocomplete="off">
+                {% csrf_token %}
+                <div class="row">
+                    <div class="col-auto">
+                        {{form.author|as_crispy_field}}
+                    </div>
+                    <div class="col-md-8">
+                        {{form.content|as_crispy_field}}
+                    </div>
+                </div>
+            </form>
+        </div>
     </div>
-    <table class=" table">
+    <p></p>
+    <h6>Todo List</h6>
+    <p></p>
+    <hr>
+    <table class="table table-hover">
         <thead>
             <tr>
                 <th scope="col">Sr. no.</th>
-                <th scope="col">First Name</th>
-                <th scope="col">Last Name</th>
+                <th scope="col">User</th>
                 <th scope="col">Content</th>
-                <th scope="col">email</th>
-                <th scope="col">Phone no.</th>
-                <th scope="col">Delete</th>
+                <th scope="col">Date & Time</th>
+                <th scope="col">Complete</th>
+                <th scope="col">Operation</th>
             </tr>
         </thead>
-        {% for todo_item in all_items %}
         <tbody>
+            {% for todo_item in all_items %}
             <tr>
-                <th scope="row">{{ todo_item.Sr_no }}</th>
-                <td>{{ todo_item.f_name }}</td>
-                <td>{{ todo_item.l_name }}</td>
+                <th scope="row">{{ todo_item.id }}</th>
+                <td>{{ todo_item.author }}</td>
                 <td>{{ todo_item.content }}</td>
-                <td>{{ todo_item.email }}</td>
-                <td>{{ todo_item.phone }}</td>
-                <th>
-                    <form action="/delete-todo/{{ todo_item.Sr_no}}/" method="post">
-                        {% csrf_token %}<input type="submit" value="delete" class="btn btn-danger" />
-                    </form>
-                </th>
+                <td>{{ todo_item.created }}</td>
+                <td colspan="2">{{ todo_item.completed }}</td>
             </tr>
+            {% endfor %}
         </tbody>
-        {% endfor %}
     </table>
-
 </div>
 {% endblock content %}

@@ -1,3 +1,4 @@
 {
-    "python.pythonPath": "C:\\Users\\shiv\\.virtualenvs\\Form_insertion-2A5cmYza\\Scripts\\python.exe"
+    "python.pythonPath": "C:\\Users\\shiv\\.virtualenvs\\Todo-PowGHqLN\\Scripts\\python.exe",
+    "python.formatting.provider": "black"
 }

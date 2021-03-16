@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+
+{% block content %}
+<div class="container">
+    <p>Create Todo</p>
+    <form action="" method="post" autocomplete="off">
+        {% csrf_token %}
+        <div class="row">
+            <div class="col-auto">
+                {{form.author|as_crispy_field}}
+            </div>
+            <div class="col-md-8">
+                {{form.content|as_crispy_field}}
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary">ADD TO</button>
+    </form>
+</div>
+{% endblock content %}
