@@ -51,27 +51,20 @@
             {% for todo_item in all_items %}
             <tr>
                 {% if todo_item.completed == False %}
-                <th scope="row">{{ todo_item.id }}</th>
+                <th scope="row">{{ forloop.counter }}</th>
                 <td>{{ todo_item.name }}</td>
-<<<<<<< HEAD
                 <td>{{ todo_item.content }}<p style="color:rgba(255, 0, 0, 0.897); display: inline; font-weight: 600;">
                         {{ todo_item.category }}</p>
                 </td>
-=======
-                <td>{{ todo_item.content }}</td>
->>>>>>> d3f9248288a0c0a74753c6baa8ac899c31edc857
                 <td>{{ todo_item.created }}</td>
                 {% else %}
-                <th class="text-muted" scope="row">{{ todo_item.id }}</th>
+                <th class="text-muted" scope="row">{{ forloop.counter }}</th>
                 <td class="text-muted">{{ todo_item.name }}</td>
-<<<<<<< HEAD
                 <td class="text-muted text-decoration-line-through">{{ todo_item.content }}<p
                         style="color:violet; display: inline; font-weight: 600;">
                         {{ todo_item.category }}</p>
                 </td>
-=======
-                <td class="text-muted text-decoration-line-through">{{ todo_item.content }}</td>
->>>>>>> d3f9248288a0c0a74753c6baa8ac899c31edc857
+
                 <td class="text-muted text-decoration-line-through">{{ todo_item.created }}</td>
                 {% endif %}
 
