@@ -1,0 +1,114 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+<div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+
+        <div class="row">
+            <div class="col-md-2">
+
+
+            </div>
+            <div class="col-md-8">
+                <div class="card mt-4 p-3">
+                    <!-- https://see.fontimg.com/api/renderfont4/vmgK9/eyJyIjoiZnMiLCJoIjoxNzEsInciOjI2MjUsImZzIjo2NSwiZmdjIjoiIzAwMDAwMCIsImJnYyI6IiNGRkZGRkYiLCJ0IjoxfQ/QmlsbGlvbiBEcmVhbXM/billion-dreams.png -->
+                    <img src="https://urbanfonts-files.s3.amazonaws.com/samples/50922/cd89d9d8211ef88ef52ceee897165902.jpg"
+                        class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title text-muted">Sign up to get full access of your Account.
+                        </h5>
+                        <a href="" class=" btn btn-sm w-100 btn-primary"><i class="fa fa-facebook"></i> Login with
+                            Facebook</a>
+
+                        <div class="row">
+                            <div class="col-md-5">
+                                <hr>
+                            </div>
+                            <div class="col-md-2">
+                                <p class="text-muted">OR</p>
+                            </div>
+                            <div class="col-md-5">
+                                <hr>
+                            </div>
+                        </div>
+
+
+
+                        <form action="" method="post">
+
+                            {% csrf_token %}
+
+                            <div class="form-group">
+                                <input class="form-control form-control-sm mb-2" type="email" name="email"
+                                    value="{{data.email}}" placeholder="Email">
+
+
+                            </div>
+
+                            <div class="form-group">
+                                <input class="form-control form-control-sm mb-2" type="text" name="name"
+                                    value="{{data.name}}" placeholder="FullName">
+
+
+                            </div>
+
+                            <div class="form-group">
+                                <input class="form-control form-control-sm mb-2" type="text" name="username"
+                                    value="{{data.username}}" placeholder="Username">
+
+
+                            </div>
+
+                            <div class="form-group">
+                                <input class="form-control form-control-sm mb-2" type="password" name="password"
+                                    value="" placeholder="Password">
+
+
+                            </div>
+
+                            <div class="form-group">
+                                <input class="form-control form-control-sm mb-2" type="password" name="password2"
+                                    value="" placeholder="Confirm Password">
+
+
+                            </div>
+
+                            <input type="submit" value="Register" class="btn btn-sm w-100 btn-primary mt-1 mb-2" />
+
+
+
+                        </form>
+
+
+                        <small class="py-3">
+                            By signing up, you agree to our Terms , Data Policy and Cookies Policy .
+                        </small>
+                        <div class="card-body text-center">
+                            <p>
+                                Already have an account?<a href="">Login</a>
+                            </p>
+                            <p>
+                                Forgot Password? <a href="">Reset it here</a>
+                            </p>
+                        </div>
+
+
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+
+
+
+
+    </div>
+</div>
+
+{% endblock %}
