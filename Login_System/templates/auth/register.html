@@ -13,10 +13,10 @@
 
             </div>
             <div class="col-md-8">
-                <div class="card mt-4 p-3">
+                <div class="card mt-4 p-2">
                     <!-- https://see.fontimg.com/api/renderfont4/vmgK9/eyJyIjoiZnMiLCJoIjoxNzEsInciOjI2MjUsImZzIjo2NSwiZmdjIjoiIzAwMDAwMCIsImJnYyI6IiNGRkZGRkYiLCJ0IjoxfQ/QmlsbGlvbiBEcmVhbXM/billion-dreams.png -->
                     <img src="https://urbanfonts-files.s3.amazonaws.com/samples/50922/cd89d9d8211ef88ef52ceee897165902.jpg"
-                        class="card-img-top" alt="...">
+                        class="card-img-top p-4" alt="...">
                     <div class="card-body">
                         <h5 class="card-title text-muted">Sign up to get full access of your Account.
                         </h5>
@@ -35,8 +35,13 @@
                             </div>
                         </div>
 
-
-
+                        {% if messages %}
+                        {% for message in messages %}
+                        <div class="alert alert-danger">
+                            {{message}}
+                        </div>
+                        {% endfor %}
+                        {% endif %}
                         <form action="{% url 'register' %}" method="post">
 
                             {% csrf_token %}
