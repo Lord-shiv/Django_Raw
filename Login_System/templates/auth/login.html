@@ -19,13 +19,7 @@
                         class="card-img-top p-4" alt="...">
                     <div class="card-body">
 
-                        {% if messages %}
-                        {% for message in messages %}
-                        <div class="alert alert-{{message.tag}}">
-                            {{message}}
-                        </div>
-                        {% endfor %}
-                        {% endif %}
+                        {% include 'partials/flash_messages.html'%}
 
                         <form action="{%url 'login'%}" method="POST">
                             {% csrf_token%}
@@ -54,7 +48,7 @@
                             <div class="col-md-5">
                                 <hr>
                             </div>
-                            <div class="col-md-2">
+                            <div class="col-md-2 text-center">
                                 <p class="text-muted">OR</p>
                             </div>
                             <div class="col-md-5">
@@ -65,12 +59,12 @@
                         <a href="" class="btn btn-sm w-100 btn-primary"><i class="fa fa-facebook"></i> Login with
                             Facebook</a>
 
-                        <div class="card-body">
+                        <div class="card-body text-center">
                             <p>
-                                Need an account? <a href="">Register</a>
+                                Need an account? <a href="{% url 'register' %}">Register</a>
                             </p>
                             <p>
-                                Forgot Password? <a href="">Reset it here</a>
+                                Forgot Password? <a href="{% url 'register' %}">Reset it here</a>
                             </p>
                         </div>
 
