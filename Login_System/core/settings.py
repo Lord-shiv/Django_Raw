@@ -130,3 +130,9 @@ EMAIL_USE_TLS = True
 EMAIL_PORT = 587
 
 MESSAGE_TAGS = {messages.ERROR: "danger"}
+
+
+LOGIN_URl = "login"
+LOGIN_REDIRECT_URL = "home"
+LOGOUT_URL = "logout"
+LOGOUT_REDIRECT_URL = "login"
