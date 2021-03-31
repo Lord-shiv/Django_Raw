@@ -134,3 +134,10 @@ class ActivateAccountView(View):
 class HomeView(View):
     def get(self, request):
         return render(request, "home.html")
+
+
+class LogoutView(View):
+    def post(self, request):
+        logout(request)
+        messages.add_message(request, messages.SUCCESS, "Logout Successfully")
+        return redirect("login")
