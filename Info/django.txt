@@ -1,0 +1,100 @@
+myproject/
+    manage.py
+    myproject/
+        __init__.py
+        urls.py
+        wsgi.py
+        settings/
+            __init__.py
+            base.py
+            dev.py
+            prod.py
+    blog/
+        __init__.py
+        models.py
+        managers.py
+        views.py
+        urls.py
+        templates/
+            blog/
+                base.html
+                list.html
+                detail.html
+        static/
+           …
+        tests/
+            __init__.py
+            test_models.py
+            test_managers.py
+            test_views.py
+    users/
+        __init__.py
+        models.py
+        views.py
+        urls.py
+        templates/
+            users/
+                base.html
+                list.html
+                detail.html
+        static/
+            …
+        tests/
+            __init__.py
+            test_models.py
+            test_views.py
+     static/
+         css/
+             …
+         js/
+             …
+     templates/
+         base.html
+         index.html
+     requirements/
+         base.txt
+         dev.txt
+         test.txt
+         prod.txt
+
+
+         
+**********************
+''' class meta '''
+**********************
+j
+class Meta:
+    db_table = 'ModelName'  # by default it create table name as appname+modelname this will replace that with our db_table name to whatever we want it to be
+    ordering = ['-published_date', 'author']  # author here will come in ascending order A,B,C and date will be last posted
+    get_latest_by = 'order_date'   # return lastest object from the table using the field name provided as the date field
+    verbose_name = 'Cool' # this will change the name in Admin interface, usefull if you have weird name for your models and You want it to make userfriendly. Cool ===> Cools
+    verbose_name_plural = 'Cool' # this will take it as it is. Cool ==> Cool
+
+    abstract = True   # this will prevent the model to not be created in database, I used it for base models.
+
+    # this will check if favorite game is .. else will give exception
+    #from django.db.models import Q
+    constraints = [
+        model.CheckConstraints(check=Q(favorite_game__gte='basketball'), name='favorite_game_gte_basketball')
+    ]
+
+    # what DB is we are using
+    required_dv_vendor = 'sqlite, postgresql, mysql, oracle'
+
+
+**********************
+'''GenericForeignKey'''
+**********************
+
+A normal ForeignKey can only “point to” one other model, which means that 
+if the TaggedItem model used a ForeignKey it would have to choose one 
+and only one model to store tags for. 
+The contenttypes application provides a special field type (GenericForeignKey) which 
+works around this and allows the relationship to be with any model:
+
+
+GenericForeignKey try to give you a ForeignKey behavior but instead to be against one 
+type of object, they do it for a set of object types (thats why they are defined with 2 
+columns, 1 to keep the primary_key and another to keep the contenty_type
+
+GenericRelation is the reverse relation of a GenericForeignKey, because Django do not automatically create reverse relations for GenericForeignKeys (unlike ForeignKeys) you have to setup them manually.
